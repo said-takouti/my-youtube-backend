@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: backend
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=my_youtube;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: ${MSSQL_SA_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
