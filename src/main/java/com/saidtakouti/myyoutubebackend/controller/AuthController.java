@@ -1,5 +1,6 @@
 package com.saidtakouti.myyoutubebackend.controller;
 
+import com.saidtakouti.myyoutubebackend.dto.LoginRequest;
 import com.saidtakouti.myyoutubebackend.dto.RegisterUserRequest;
 import com.saidtakouti.myyoutubebackend.dto.UserResponse;
 import com.saidtakouti.myyoutubebackend.entity.AppUser;
@@ -27,4 +28,13 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).
                 body(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserResponse> login(@Valid @RequestBody LoginRequest request) {
+        AppUser user = appUserService.login(request);
+        UserResponse response = new UserResponse(user.getId(), user.getUsername(), user.getEmail());
+        return ResponseEntity.ok(response);
+    }
+
+
 }
